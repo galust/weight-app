@@ -3,7 +3,7 @@ import {useDispatch} from 'react-redux'
 import FormGroup from "./form-group";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import {ReformatData} from "../../helpers/utils";
+import {reformatData} from "../../helpers/utils";
 import {addItem, toggleModal} from "../../redux/main/slice";
 import {useForm} from 'react-hook-form';
 
@@ -28,7 +28,7 @@ const AddForm = () => {
 
 
     const submitAddress = (rawData) => {
-        const data = ReformatData(rawData);
+        const data = reformatData(rawData);
         dispatch(addItem(data));
         dispatch(toggleModal(false));
     };

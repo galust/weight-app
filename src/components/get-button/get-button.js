@@ -1,5 +1,5 @@
 import Button from "@mui/material/Button";
-import {CalculateProbability} from "../../helpers/utils";
+import {getItemsByWeight} from "../../helpers/utils";
 import {useDispatch, useSelector} from "react-redux";
 import {selectItems} from "../../redux/main/slice";
 
@@ -10,7 +10,7 @@ const GetButton = () => {
     const handleClick = () => {
         if (!items || !items.length)
             return false;
-        const data = CalculateProbability(items);
+        const data = getItemsByWeight(items,5);
         dispatch(selectItems(data));
     }
 
