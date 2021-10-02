@@ -7,7 +7,7 @@ import ClearButton from "../clear-button/clear-button";
 const ActionButtons = () => {
     return (
         <div className="action-buttons">
-            <Stack spacing={2} direction="row" sx={{ m: 1 }}>
+            <Stack spacing={2} direction="row" sx={{m: 1}}>
                 <AddButton/>
                 <GetButton/>
                 <ClearButton/>

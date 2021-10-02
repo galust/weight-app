@@ -10,14 +10,14 @@ import {format} from "date-fns";
 
 const ItemsList = () => {
     const items = useSelector((state) => state.main.selected);
-    if(!items || !items.length)
+    if (!items || !items.length)
         return false;
 
     return (
         <div className="items-list">
             <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <TableHead>
+                <Table sx={{minWidth: 650}} aria-label="simple table">
+                    <TableHead sx={{bgcolor: '#16161621'}}>
                         <TableRow>
                             <TableCell>Name</TableCell>
                             <TableCell align="right">Price&nbsp;($)</TableCell>
@@ -30,21 +30,24 @@ const ItemsList = () => {
                         {items.map((row) => (
                             <TableRow
                                 key={row.id}
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                sx={{
+                                    '&:last-child td, &:last-child th': {border: 0}, '&:nth-of-type(even)': {
+                                        bgcolor: '#f2f2f3',
+                                    }
+                                }}
                             >
                                 <TableCell component="th" scope="row">
                                     {row.name}
                                 </TableCell>
                                 <TableCell align="right">{row.price}</TableCell>
                                 <TableCell align="right">{row.weight}</TableCell>
-                                <TableCell align="right">{format(row.dates[0],'dd/MM/yyyy')}</TableCell>
-                                <TableCell align="right">{format(row.dates[1],'dd/MM/yyyy')}</TableCell>
+                                <TableCell align="right">{format(row.dates[0], 'dd/MM/yyyy')}</TableCell>
+                                <TableCell align="right">{format(row.dates[1], 'dd/MM/yyyy')}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
                 </Table>
             </TableContainer>
-
         </div>
     )
 }

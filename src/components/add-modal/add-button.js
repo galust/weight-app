@@ -31,10 +31,10 @@ const AddButton = () => {
 
     return (
         <div>
-            <Button variant="contained" onClick={()=> dispatch(toggleModal(true))}>Add Items</Button>
+            <Button variant="contained" onClick={() => dispatch(toggleModal(true))}>Add Items</Button>
             <Modal
                 open={open}
-                onClose={()=>dispatch(toggleModal(false))}
+                onClose={() => dispatch(toggleModal(false))}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >

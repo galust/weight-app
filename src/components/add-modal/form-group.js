@@ -7,36 +7,41 @@ import {Controller} from "react-hook-form";
 
 import './add-modal.scss'
 
-const FormGroup = ({row, errors ,control}) => {
+const FormGroup = ({row, errors, control}) => {
     return (
         <div className="form-group">
-            <FormControl fullWidth sx={{ my: 1 }}>
+            <FormControl fullWidth sx={{my: 1}}>
                 <InputLabel>Name</InputLabel>
                 <Controller
-                    rules={{ required: true }}
+                    rules={{required: true}}
                     name={`name:${row.id}`}
                     control={control}
-                    render={({ field: { onChange } }) => {
+                    render={({field: {onChange}}) => {
                         return (
                             <OutlinedInput
-                            control={control}
-                            error={!!errors[`name:${row.id}`]}
-                            defaultValue=""
-                            fullWidth
-                            label="Name"
-                            onChange={onChange}
-                            name={`name:${row.id}`}
-                        />)
+                                control={control}
+                                error={!!errors[`name:${row.id}`]}
+                                defaultValue=""
+                                fullWidth
+                                label="Name"
+                                onChange={onChange}
+                                name={`name:${row.id}`}
+                            />)
                     }}
                 />
             </FormControl>
-            <FormControl fullWidth sx={{ my: 1 }}>
+            <FormControl fullWidth sx={{my: 1}}>
                 <InputLabel>Price</InputLabel>
                 <Controller
-                    rules={{ required: true }}
+                    rules={{
+                        required: true,
+                        validate: {
+                            positiveNumber: (value) => parseFloat(value) > 0
+                        }
+                    }}
                     name={`price:${row.id}`}
                     control={control}
-                    render={({ field: { onChange } }) => {
+                    render={({field: {onChange}}) => {
                         return <OutlinedInput
                             error={!!errors[`price:${row.id}`]}
                             defaultValue=""
@@ -48,13 +53,18 @@ const FormGroup = ({row, errors ,control}) => {
                     }}
                 />
             </FormControl>
-            <FormControl fullWidth sx={{ my: 1 }} >
+            <FormControl fullWidth sx={{my: 1}}>
                 <InputLabel>Weight</InputLabel>
                 <Controller
-                    rules={{ required: true }}
+                    rules={{
+                        required: true,
+                        validate: {
+                            positiveNumber: (value) => parseFloat(value) > 0
+                        }
+                    }}
                     name={`weight:${row.id}`}
                     control={control}
-                    render={({ field: { onChange } }) => {
+                    render={({field: {onChange}}) => {
                         return <OutlinedInput
                             error={!!errors[`weight:${row.id}`]}
                             defaultValue=""
@@ -66,13 +76,13 @@ const FormGroup = ({row, errors ,control}) => {
                     }}
                 />
             </FormControl>
-            <FormControl fullWidth sx={{ my: 1 }}>
+            <FormControl fullWidth sx={{my: 1}}>
 
                 <Controller
-                    rules={{ required: true }}
+                    rules={{required: true}}
                     name={`dates:${row.id}`}
                     control={control}
-                    render={({ field: { onChange } }) => {
+                    render={({field: {onChange}}) => {
                         return (
                             <RangePicker
                                 rowId={row.id}

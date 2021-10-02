@@ -5,40 +5,45 @@ const ReformatData = (data) => {
     for (const i in data) {
         const idx = i.split(':')[1];
         const property = i.split(':')[0];
-        arr[idx] = arr[idx] ? {...arr[idx],[property]:data[i],id:startIndex + +idx+1} : {[property]:data[i],id:startIndex + +idx+1}
+        arr[idx] = arr[idx] ? {...arr[idx], [property]: data[i], id: startIndex + +idx + 1} : {
+            [property]: data[i],
+            id: startIndex + +idx + 1
+        }
     }
 
     return arr;
 }
 
-const CalculateProbability = () => {
+const CalculateProbability = (items) => {
     const now = new Date().getTime();
-    const items = JSON.parse(localStorage.getItem('items'));
-    const rawData = items.filter((element)=>{
+
+    const rawData = items.filter((element) => {
         return element.dates[0] <= now && element.dates[1] >= now
     });
     let selectedIDS = [];
 
-    for(let i = 0; i < 5 && rawData.length > 0; i++){
+    for (let i = 0; i < 5 && rawData.length > 0; i++) {
         let length = 0;
+        let elementsRanges = [];
         for (const element of rawData) {
-                element.range = [length,length + +element.weight]
-                length += +element.weight;
+            elementsRanges.push([length, length + +element.weight]);
+            length += +element.weight;
 
         }
-        const randomNumber = getRandomInRange(0,length-1);
+        const randomNumber = getRandomInRange(0, length - 1);
 
-        const IDX = rawData.findIndex((elem) => {
-            return elem.range[0] <= randomNumber && randomNumber < elem.range[1]
+        const IDX = elementsRanges.findIndex((elem) => {
+            return elem[0] <= randomNumber && randomNumber < elem[1]
         });
 
-        if(IDX !== -1){
+        if (IDX !== -1) {
             selectedIDS.push(rawData[IDX].id);
-            rawData.splice(IDX,1);
+            rawData.splice(IDX, 1);
+            elementsRanges.splice(IDX, 1);
         }
 
     }
-    return items.filter((elements)=>{
+    return items.filter((elements) => {
         return selectedIDS.includes(elements.id)
     })
 

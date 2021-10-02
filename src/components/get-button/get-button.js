@@ -8,12 +8,11 @@ const GetButton = () => {
     const items = useSelector((state) => state.main.items);
     const dispatch = useDispatch();
     const handleClick = () => {
-        if(!items || !items.length)
+        if (!items || !items.length)
             return false;
         const data = CalculateProbability(items);
         dispatch(selectItems(data));
     }
-
 
 
     return (

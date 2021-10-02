@@ -6,8 +6,8 @@ const ClearButton = () => {
     const dispatch = useDispatch();
 
 
-    return(
-        <Button variant="contained" onClick={()=>dispatch(clearItems())}>Clear</Button>
+    return (
+        <Button variant="contained" onClick={() => dispatch(clearItems())}>Clear</Button>
     )
 }
 
