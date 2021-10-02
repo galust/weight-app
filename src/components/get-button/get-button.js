@@ -14,9 +14,8 @@ const GetButton = () => {
         dispatch(selectItems(data));
     }
 
-
     return (
-        <Button variant="contained" onClick={handleClick}>Get Items</Button>
+        <Button variant="contained" disabled={!items.length} onClick={handleClick}>Get Items</Button>
     )
 }
 
