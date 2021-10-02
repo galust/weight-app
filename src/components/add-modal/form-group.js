@@ -36,7 +36,7 @@ const FormGroup = ({row, errors, control}) => {
                     rules={{
                         required: true,
                         validate: {
-                            positiveNumber: (value) => parseFloat(value) > 0
+                            positiveNumber: (value) => parseFloat(value) >= 1
                         }
                     }}
                     name={`price:${row.id}`}
@@ -59,7 +59,7 @@ const FormGroup = ({row, errors, control}) => {
                     rules={{
                         required: true,
                         validate: {
-                            positiveNumber: (value) => parseFloat(value) > 0
+                            positiveNumber: (value) => parseFloat(value) >= 1
                         }
                     }}
                     name={`weight:${row.id}`}

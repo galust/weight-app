@@ -23,15 +23,14 @@ const CalculateProbability = (items) => {
     let selectedIDS = [];
 
     for (let i = 0; i < 5 && rawData.length > 0; i++) {
-        let length = 0;
+        let length = 1;
         let elementsRanges = [];
         for (const element of rawData) {
             elementsRanges.push([length, length + +element.weight]);
             length += +element.weight;
 
         }
-        const randomNumber = getRandomInRange(0, length - 1);
-
+        const randomNumber = getRandomInRange(1, length - 1);
         const IDX = elementsRanges.findIndex((elem) => {
             return elem[0] <= randomNumber && randomNumber < elem[1]
         });
@@ -48,56 +47,10 @@ const CalculateProbability = (items) => {
     })
 
 }
-/*const ReRange = (idx,data) => {
-
-    data.splice(idx,1);
-    let length = 0;
-    for (const element of data) {
-        element.range = [length,+element.weight]
-        length += element.weight;
-    }
-    console.log('rerange')
-    return data;
-}
-
-const GetItemsByWeight = (rangeArray,realData) => {
-    const obj = Object.fromEntries(realData);
-    const tempArray = rangeArray;
-    let rawData = realData;
-    const IDS = new Set();
-    const selectedArray = new Set();
-
-
-
-    let i = 0
-    do {
-        i += 1;
-        const randomNumber = getRandomInRange(0,tempArray.length);
-        const ID = tempArray[randomNumber];
-        IDS.add(ID);
-
-        console.log(ID)
-        const {range} = rawData[ID];
-        console.log(randomNumber,ID,rawData)
-        if(tempArray.length){
-            //selectedArray.add(realData[ID]);
-            rawData = ReRange(ID,rawData);
-            tempArray.splice(range[0],range[1])
-        }
-    } while (i < 5 && tempArray.length > 0);
-
-
-    const result = realData.filter(elem => {
-        return IDS.has(elem.id);
-
-    });
-    console.log('result',result)
-}*/
-
 const getRandomInRange = (min, max) => {
     min = Math.ceil(min);
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+    return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 export {
